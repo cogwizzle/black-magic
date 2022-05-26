@@ -1,0 +1,24 @@
+{
+  "name": "black-magic",
+  "version": "1.0.0",
+  "description": "Cast spells and summon code.",
+  "bin": {
+    "black-magic": "bin/app.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cogwizzle/black-magic.git"
+  },
+  "author": "cogwizzle",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cogwizzle/black-magic/issues"
+  },
+  "homepage": "https://github.com/cogwizzle/black-magic#readme",
+  "dependencies": {
+    "cosmiconfig": "^7.0.1"
+  }
+}
