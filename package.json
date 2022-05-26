@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Cast spells and summon code.",
   "bin": {
-    "black-magic": "bin/app.js"
+    "black-magic": "bin/black-magic"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
