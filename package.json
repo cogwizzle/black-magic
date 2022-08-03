@@ -1,6 +1,6 @@
 {
   "name": "black-magic",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Cast spells and summon code.",
   "bin": {
     "black-magic": "bin/black-magic"
