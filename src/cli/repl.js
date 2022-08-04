@@ -1,7 +1,7 @@
 const repl = require('repl')
 const loadPackages = require('./load-packages')
 const loadSelector = require('./load-selector')
-const { createSpell } = require('./index')
+const { createSpell } = require('../index')
 
 module.exports = () => {
   const spellbook = createSpell({
