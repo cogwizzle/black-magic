@@ -13,6 +13,12 @@
  */
 module.exports = ({ spellbook = {}, spellPath, spell, help }) => {
   const tokens = spellPath.split('.')
+  if (typeof spellPath !== 'string' || spellPath === '') {
+    throw new Error('Spell path is required.')
+  }
+  if (typeof spell !== 'function') {
+    throw new Error('Spell is required.')
+  }
   tokens.reduce((section, token, index) => {
     if (index === tokens.length - 1) {
       section[token] = spell
