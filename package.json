@@ -5,6 +5,7 @@
   "bin": {
     "black-magic": "bin/black-magic"
   },
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
