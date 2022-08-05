@@ -54,7 +54,6 @@ describe('load-packages', () => {
     })`
     )
     await loadPackages(spellbook)
-    console.log(spellbook)
     expect(spellbook).to.have.property('test')
     expect(spellbook.test).to.be.a('function')
   })
