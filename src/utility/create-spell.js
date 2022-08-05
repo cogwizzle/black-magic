@@ -23,27 +23,17 @@ module.exports = ({ spellbook = {}, spellPath, spell, help }) => {
   if (typeof spell !== 'function') {
     throw new Error('Spell is required.')
   }
-  /**
-   *
-   * @param {Spellbook} section
-   * @param {string} token
-   * @param {number} index
-   * @returns {Spellbook}
-   */
-  const reduce = (section, token, index) => {
+  tokens.reduce((section, token, index) => {
     if (index === tokens.length - 1) {
       section[token] = spell
       if (help) section[token].help = help
       return section
     }
     if (!section.hasOwnProperty(token)) {
-      /** @type Spellbook */
       const newSection = {}
       section[token] = newSection
-      return newSection
     }
-    return section
-  }
-  tokens.reduce(reduce, spellbook)
+    return section[token]
+  }, spellbook)
   return spellbook
 }
