@@ -1,6 +1,10 @@
 /**
+ * @typedef {{[key: string]: Spellbook|Function}} Spellbook
+ */
+
+/**
  * @typedef {Object} CreateSpellArgs
- * @property {Object.<string,any>|undefined} spellbook - The spellbook to add the spell to.
+ * @property {Spellbook|undefined} spellbook - The spellbook to add the spell to.
  * @property {String} spellPath - The path to the spell. Paths are "." delimited.
  * @property {function} spell - The spell function.
  * @property {?function} [help] - The help function to describe how to use the spell.
@@ -9,7 +13,7 @@
 /**
  * Create a spell.
  * @param {CreateSpellArgs} spellOptions - The options to create the spell.
- * @returns {Object} The spellbook.
+ * @returns {Spellbook} The spellbook.
  */
 module.exports = ({ spellbook = {}, spellPath, spell, help }) => {
   const tokens = spellPath.split('.')
@@ -19,17 +23,28 @@ module.exports = ({ spellbook = {}, spellPath, spell, help }) => {
   if (typeof spell !== 'function') {
     throw new Error('Spell is required.')
   }
-  tokens.reduce((section, token, index) => {
+  /**
+   *
+   * @param {Spellbook} section
+   * @param {string} token
+   * @param {number} index
+   * @returns {Spellbook}
+   */
+  const reduce = (section, token, index) => {
     if (index === tokens.length - 1) {
       section[token] = spell
+      // @ts-ignore
       if (help) section[token].help = help
-      return
-    } else {
-      if (!section.hasOwnProperty(token)) {
-        section[token] = {}
-      }
-      return section[token]
+      return section
     }
-  }, spellbook)
+    if (!section.hasOwnProperty(token)) {
+      /** @type Spellbook */
+      const newSection = {}
+      section[token] = newSection
+      return newSection
+    }
+    return section
+  }
+  tokens.reduce(reduce, spellbook)
   return spellbook
 }
