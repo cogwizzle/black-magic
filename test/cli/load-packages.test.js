@@ -34,7 +34,7 @@ describe('load-packages', () => {
   When I have no spellPackages
   Then the spellbook should only have the default spells in it.`, async () => {
     const spellbook = {}
-    await fsPromises.writeFile('.spellbookrc.js', 'module.exports = () => {}')
+    await fsPromises.writeFile(configFileName, 'module.exports = () => {}')
     await loadPackages(spellbook)
     const keys = Object.keys(spellbook)
     expect(keys).to.have.lengthOf(0)
@@ -46,7 +46,7 @@ describe('load-packages', () => {
   Then the spellbook should have the spells from the spellPackages in it.`, async () => {
     const spellbook = {}
     await fsPromises.writeFile(
-      '.spellbookrc.js',
+      configFileName,
       `module.exports = ({
       spellPackages: [
         spellbook => spellbook.test = () => {}
