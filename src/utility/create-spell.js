@@ -1,5 +1,5 @@
 /**
- * @typedef {{[key: string]: Spellbook|Function}} Spellbook
+ * @typedef {{[key: string]: Object|Function}} Spellbook
  */
 
 /**
@@ -33,7 +33,6 @@ module.exports = ({ spellbook = {}, spellPath, spell, help }) => {
   const reduce = (section, token, index) => {
     if (index === tokens.length - 1) {
       section[token] = spell
-      // @ts-ignore
       if (help) section[token].help = help
       return section
     }

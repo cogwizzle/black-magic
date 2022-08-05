@@ -22,7 +22,7 @@ Then an error is thrown`, () => {
       createSpell({
         spellbook: undefined,
         spellPath: 'test',
-        // @ts-ignore
+        // @ts-ignore Testing Invalid type for spell.
         spell: undefined,
         help: () => {},
       })
