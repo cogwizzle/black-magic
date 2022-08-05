@@ -1,16 +1,20 @@
-const { cosmiconfigSync } = require('cosmiconfig')
+const cosmiconfig = require('cosmiconfig').cosmiconfig
 
 /**
  * Retrieves all modules from the .spellbookrc.js file and adds them into the spellbook.
  * @param {Object} spellbook The spellbook, a collection of developer functions.
- * @returns {void}
+ * @returns {Promise<void>}
  */
-module.exports = (spellbook) => {
-  const explorer = cosmiconfigSync('spellbook')
-  const spells = explorer.search()
-  if (!spells) return
-  if (!spells.config.spellPackages) return
-  spells.config.spellPackages.forEach((package) => {
-    package(spellbook)
-  })
+module.exports = async (spellbook) => {
+  const explorer = await cosmiconfig('spellbook')
+  const searchResults = await explorer.search()
+  console.log({ searchResults })
+  if (!searchResults) return Promise.resolve()
+  if (!searchResults.config.spellPackages) return Promise.resolve()
+  return Promise.resolve(
+    searchResults.config.spellPackages.reduce((spellbook, package) => {
+      package(spellbook)
+      return spellbook
+    }, spellbook)
+  )
 }
