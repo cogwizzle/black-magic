@@ -8,7 +8,6 @@ const cosmiconfig = require('cosmiconfig').cosmiconfig
 module.exports = async (spellbook) => {
   const explorer = await cosmiconfig('spellbook')
   const searchResults = await explorer.search()
-  console.log({ searchResults })
   if (!searchResults) return Promise.resolve()
   if (!searchResults.config.spellPackages) return Promise.resolve()
   return Promise.resolve(
